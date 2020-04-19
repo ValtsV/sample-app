@@ -25,19 +25,25 @@ class App extends Component {
   };
 
   render() {
+    let div = null;
+
+    if (this.state.showDiv) {
+      div = (
+        <div>
+          <UserInput onChange={this.handleChange} />
+          <UserOutput username={this.state.usernames[0]} />
+          <UserOutput username={this.state.usernames[1]} />
+          <UserOutput username={this.state.usernames[2]} />
+        </div>
+      );
+    }
+
     return (
       <React.Fragment>
         <button className="btn btn-danger m-3" onClick={this.showDivFunc}>
           Something
         </button>
-        {this.state.showDiv ? (
-          <div>
-            <UserInput onChange={this.handleChange} />
-            <UserOutput username={this.state.usernames[0]} />
-            <UserOutput username={this.state.usernames[1]} />
-            <UserOutput username={this.state.usernames[2]} />
-          </div>
-        ) : null}
+        {div}
       </React.Fragment>
     );
   }
