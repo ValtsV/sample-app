@@ -8,7 +8,7 @@ import UserOutput from "./User/UserOutput";
 class App extends Component {
   state = {
     usernames: ["John", "Silvia", "Alex"],
-    inputValue: "",
+    showDiv: false,
   };
 
   handleChange = (e) => {
@@ -19,14 +19,26 @@ class App extends Component {
     });
   };
 
+  showDivFunc = () => {
+    const doesShow = this.state.showDiv;
+    this.setState({ showDiv: !doesShow });
+  };
+
   render() {
     return (
-      <div>
-        <UserInput onChange={this.handleChange} value={this.state.inputValue} />
-        <UserOutput username={this.state.usernames[0]} />
-        <UserOutput username={this.state.usernames[1]} />
-        <UserOutput username={this.state.usernames[2]} />
-      </div>
+      <React.Fragment>
+        <button className="btn btn-danger m-3" onClick={this.showDivFunc}>
+          Something
+        </button>
+        {this.state.showDiv ? (
+          <div>
+            <UserInput onChange={this.handleChange} />
+            <UserOutput username={this.state.usernames[0]} />
+            <UserOutput username={this.state.usernames[1]} />
+            <UserOutput username={this.state.usernames[2]} />
+          </div>
+        ) : null}
+      </React.Fragment>
     );
   }
 }
