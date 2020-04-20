@@ -28,7 +28,7 @@ class App extends Component {
 
   render() {
     const array = [...this.state.textareaValue];
-    const list = array.map((el) => <li>{el}</li>);
+    const list = array.map((el) => <CharComponent value={el} />);
 
     return (
       <React.Fragment>
