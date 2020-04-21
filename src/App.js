@@ -26,9 +26,23 @@ class App extends Component {
     this.setState({ switch: !switchValue });
   };
 
+  deleteThis = (index) => {
+    let text = [...this.state.textareaValue];
+    text.splice(index, 1);
+    const text2 = text.join("");
+    console.log(text2);
+    this.setState({ textareaValue: text2 });
+  };
+
   render() {
     const array = [...this.state.textareaValue];
-    const list = array.map((el) => <CharComponent value={el} />);
+    const list = array.map((el, index) => (
+      <CharComponent
+        key={index}
+        value={el}
+        click={() => this.deleteThis(index)}
+      />
+    ));
 
     return (
       <React.Fragment>
